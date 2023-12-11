@@ -4,6 +4,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -20,6 +22,11 @@ public class SchoolEntity {
 
     @NonNull
     String name;
+
+    @Builder.Default
+    @OneToMany
+    @JoinColumn(name = "school_id", referencedColumnName = "id")
+    List<SchoolClassEntity> schoolClasses = new ArrayList<>();
 
     public static SchoolEntity makeDefault(String schoolName) {
         return builder()

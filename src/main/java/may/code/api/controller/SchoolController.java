@@ -25,12 +25,12 @@ public class SchoolController {
     SchoolRepository schoolRepository;
     SchoolDTOFactory schoolDTOFactory;
 
-    private static final String FETCH_SCHOOL = "/api/school";
-    private static final String CREATE_SCHOOL = "/api/school/{schoolName}";
-    private static final String DELETE_SCHOOL = "/api/school/{schoolId}";
+    public static final String FETCH_SCHOOLS = "/api/schools";
+    public static final String CREATE_SCHOOLS = "/api/schools/{schoolName}";
+    public static final String DELETE_SCHOOLS = "/api/schools/{schoolId}";
 
 
-    @GetMapping(FETCH_SCHOOL)
+    @GetMapping(FETCH_SCHOOLS)
     public ResponseEntity<List<SchoolDTO>> fetchSchool(@RequestParam String filter) {
 
         boolean isFiltered = !filter.trim().isEmpty();
@@ -40,7 +40,7 @@ public class SchoolController {
         return ResponseEntity.ok(schoolDTOFactory.createSchoolDTOList(schools));
     }
 
-    @PostMapping(CREATE_SCHOOL)
+    @PostMapping(CREATE_SCHOOLS)
     public ResponseEntity<SchoolDTO> createSchool(@PathVariable String schoolName){
 
         if (schoolRepository.existsByName(schoolName)){
@@ -54,7 +54,7 @@ public class SchoolController {
         return ResponseEntity.ok(schoolDTOFactory.createSchoolDTO(schoolEntity));
     }
 
-    @DeleteMapping(DELETE_SCHOOL)
+    @DeleteMapping(DELETE_SCHOOLS)
     public ResponseEntity<AckDTO> deleteSchool(@PathVariable Long schoolId) {
 
         if (schoolRepository.existsById(schoolId)){

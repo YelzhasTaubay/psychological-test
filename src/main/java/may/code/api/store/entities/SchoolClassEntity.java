@@ -18,4 +18,22 @@ public class SchoolClassEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
 
+    @NonNull
+    String name;
+
+    @NonNull
+    @ManyToOne
+    @JoinColumn(name = "school_id", referencedColumnName = "id")
+    SchoolEntity school;
+
+    @Column(name = "school_id", updatable = false, insertable = false)
+    Long schoolId;
+
+    public static SchoolClassEntity makeDefault(String name, SchoolEntity school){
+        return builder()
+                .name(name)
+                .school(school)
+                .build();
+    }
+
 }

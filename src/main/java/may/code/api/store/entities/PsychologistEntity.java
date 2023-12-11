@@ -18,4 +18,6 @@ public class PsychologistEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
 
+
+
 }

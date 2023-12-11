@@ -1,6 +1,6 @@
 package may.code.api.domains;
 
-public enum PeopleRole {
+public enum UserRole {
     STUDENT,
     PARENT,
     TEACHER

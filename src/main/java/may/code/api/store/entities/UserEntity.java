@@ -2,7 +2,7 @@ package may.code.api.store.entities;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import may.code.api.domains.PeopleRole;
+import may.code.api.domains.UserRole;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -13,27 +13,38 @@ import java.time.Instant;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "people")
-public class PeopleEntity {
+@Table(name = "user")
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
 
     @NonNull
-    String fio;
+    String fullName;
 
     @NonNull
     Instant birthday;
 
     @NonNull
     @Enumerated(EnumType.STRING)
-    PeopleRole role;
+    UserRole role;
 
     @NonNull
     @ManyToOne
     SchoolClassEntity schoolClass;
 
-
+    public static UserEntity makeDefault(
+            String fullName,
+            Instant birthday,
+            UserRole role,
+            SchoolClassEntity schoolClass) {
+        return builder()
+                .fullName(fullName)
+                .birthday(birthday)
+                .role(role)
+                .schoolClass(schoolClass)
+                .build();
+    }
 
 }

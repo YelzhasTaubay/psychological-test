@@ -1,0 +1,22 @@
+---
+
+  logging:
+    level:
+      org.springframework: INFO
+
+
+  server:
+    port: 9120
+
+
+
+  spring:
+    datasource:
+      url: jdbc:postgresql://localhost:5432/psychological-testing
+      username: postgres
+      password: e2596781234
+      driver-class-name: org.postgresql.Driver
+    jpa:
+      show-sql: false
+      hibernate:
+        ddl-auto: update
